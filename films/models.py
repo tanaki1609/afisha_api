@@ -30,6 +30,7 @@ class Movie(models.Model):
     description = models.TextField(null=True, blank=True)
     duration = models.IntegerField()
     is_active = models.BooleanField(default=True)
+    views = models.IntegerField(default=0)
     created = models.DateTimeField(auto_now_add=True)
     updated = models.DateTimeField(auto_now=True)
 
