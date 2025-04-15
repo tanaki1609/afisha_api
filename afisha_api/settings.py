@@ -37,6 +37,8 @@ INSTALLED_APPS = [
     'django.contrib.staticfiles',
     'rest_framework',
     'films',
+    'users',
+    'rest_framework.authtoken',
 ]
 
 MIDDLEWARE = [
@@ -49,6 +51,12 @@ MIDDLEWARE = [
     'django.middleware.clickjacking.XFrameOptionsMiddleware',
     'querycount.middleware.QueryCountMiddleware'
 ]
+
+REST_FRAMEWORK = {
+    'DEFAULT_AUTHENTICATION_CLASSES': [
+        'rest_framework.authentication.TokenAuthentication'
+    ]
+}
 
 QUERYCOUNT = {
     'THRESHOLDS': {
@@ -116,7 +124,7 @@ AUTH_PASSWORD_VALIDATORS = [
 
 LANGUAGE_CODE = 'en-us'
 
-TIME_ZONE = 'UTC'
+TIME_ZONE = 'Asia/Bishkek'
 
 USE_I18N = True
 
