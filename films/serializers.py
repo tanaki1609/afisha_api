@@ -6,7 +6,7 @@ from rest_framework.exceptions import ValidationError
 class DirectorSerializer(serializers.ModelSerializer):
     class Meta:
         model = Director
-        fields = 'id fio'.split()
+        fields = 'id fio birthday_date'.split()
 
 
 class GenreSerializer(serializers.ModelSerializer):

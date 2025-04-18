@@ -5,20 +5,21 @@ from django.contrib.auth.models import User
 from rest_framework import status
 from django.contrib.auth import authenticate
 from rest_framework.authtoken.models import Token
+from rest_framework.views import APIView
 
 
-@api_view(['POST'])
-def authorization_api_view(request):
-    serializer = AuthValidateSerializer(data=request.data)
-    serializer.is_valid(raise_exception=True)
+class AuthAPIView(APIView):
+    def post(self, request):
+        serializer = AuthValidateSerializer(data=request.data)
+        serializer.is_valid(raise_exception=True)
 
-    user = authenticate(**serializer.validated_data)  # username=admin1, password=123
+        user = authenticate(**serializer.validated_data)  # username=admin1, password=123
 
-    if user:
-        token, _ = Token.objects.get_or_create(user=user)
-        return Response(data={'key': token.key})
-    return Response(status=status.HTTP_401_UNAUTHORIZED,
-                    data={'error': 'User credentials are wrong!'})
+        if user:
+            token, _ = Token.objects.get_or_create(user=user)
+            return Response(data={'key': token.key})
+        return Response(status=status.HTTP_401_UNAUTHORIZED,
+                        data={'error': 'User credentials are wrong!'})
 
 
 @api_view(['POST'])
